@@ -36,7 +36,7 @@ Add this to your `pubspec.yaml`:
 dependencies:
   tamimah_core:
     git:
-      url: https://github.com/your-company/tamimah_core.git
+      url: https://github.com/Tamimah-Research/tamimah_network_core.git
       ref: main
 ```
 
