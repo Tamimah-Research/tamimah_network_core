@@ -49,7 +49,7 @@ import 'package:tamimah_core/tamimah_core.dart';
 
 void main() {
   // Initialize with your API configuration
-  TamimahCore.initialize(
+  TamimahNetworkCore.initialize(
     baseUrl: 'https://api.yourapp.com',
     authToken: 'your-auth-token', // Optional
     defaultHeaders: {
@@ -65,7 +65,7 @@ void main() {
 
 ```dart
 // GET request
-final response = await TamimahCore.network.get<Map<String, dynamic>>(
+final response = await TamimahNetworkCore.network.get<Map<String, dynamic>>(
   '/api/users',
   queryParameters: {'page': 1, 'limit': 10},
   fromJson: (json) => json,
@@ -79,7 +79,7 @@ if (response.isSuccess) {
 }
 
 // POST request
-final createResponse = await TamimahCore.network.post<User>(
+final createResponse = await TamimahNetworkCore.network.post<User>(
   '/api/users',
   data: {
     'name': 'John Doe',
@@ -123,7 +123,7 @@ class User extends BaseModel {
 }
 
 // Use with type conversion
-final response = await TamimahCore.network.get<User>(
+final response = await TamimahNetworkCore.network.get<User>(
   '/api/users/1',
   fromJson: (json) => User.fromJson(json),
 );
@@ -140,7 +140,7 @@ if (response.isSuccess) {
 import 'dart:io';
 
 final file = File('/path/to/image.jpg');
-final response = await TamimahCore.network.upload<String>(
+final response = await TamimahNetworkCore.network.upload<String>(
   '/api/upload',
   file: file,
   fieldName: 'image',
@@ -250,7 +250,7 @@ NetworkManager.instance.clearHeaders();
 
 ```dart
 try {
-  final response = await TamimahCore.network.get<User>('/api/users/1');
+  final response = await TamimahNetworkCore.network.get<User>('/api/users/1');
   
   if (response.isSuccess) {
     final user = response.dataOrThrow;
@@ -282,7 +282,7 @@ try {
 
 ```dart
 // Get paginated users
-final response = await TamimahCore.network.get<List<User>>(
+final response = await TamimahNetworkCore.network.get<List<User>>(
   '/api/users',
   queryParameters: {'page': 1, 'per_page': 10},
   fromJson: (json) {
